@@ -16,7 +16,24 @@
     outline-offset: 2px;
   }
 }
+img{
+  width: 50%;
+  height: 50%;
+}
+.put_correct{
+  flex-wrap: wrap;
+  position:relative;
+  overflow-x: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
 
+  .img{
+    width: 350px;
+    height: 350px;
+  }
+  
+}
 .hero {
   position: relative;
 
