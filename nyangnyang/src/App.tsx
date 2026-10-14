@@ -23,6 +23,7 @@ interface props{
 //   }
   
 // }
+//this is to check
 function Movies({title, year, img}:props){
     return(
       <div>
