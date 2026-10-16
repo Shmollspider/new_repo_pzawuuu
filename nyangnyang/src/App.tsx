@@ -34,6 +34,16 @@ function Movie({title, year, img}:props){
       </div>
     );
 }
+function Books({title, year, img, strony}:props){
+    return(
+      <div>
+        <img src={img} className='img'></img>
+        <p>{title}</p>
+        <p>{year}</p>
+        <p>{strony}</p>
+      </div>
+    );
+}
 function Music({title, year, img, m_link}:props){
     return(
       <div>
@@ -61,6 +71,32 @@ function App(){
       title: "Frieren",
       year: 2020,
       img: "./public/frieren.jpg"
+    }
+  ]
+  const books = [
+    {
+      title: "Zbrodnia i Kara",
+      year: 1866,
+      img: "./public/zik.jpg",
+      strony: 450
+    },
+    {
+      title: "Córka Głębin",
+      year: 2021,
+      img: "./public/cg.jpg",
+      strony: 200
+    },
+    {
+      title: "Smocza Straż",
+      year: 2020,
+      img: "./public/ss.jpg",
+      strony: 450
+    },
+    {
+      title: "Moby Dick",
+      year: 1851,
+      img: "./public/zik.jpg",
+      strony: 450
     }
   ]
   const albums = [
@@ -93,18 +129,22 @@ function App(){
     <div>
       <div>
       <h1>MOVIES AND SERIALS</h1><br />
-      <div className='put_correct'>
+        <div className='put_correct'>
         {Movies.map(m=> <Movie title={m.title} year={m.year} img={m.img} />)}
+        </div>
       </div>
-     
-    </div>
-    <div>
-      <h1>Music/Albums</h1><br />
-      <div className='put_correct'>
-        {albums.map(mm=> <Music title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} />)}
+      <div>
+        <h1>Music/Albums</h1><br />
+        <div className='put_correct'>
+          {albums.map(mm=> <Music title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} />)}
+        </div>
       </div>
-     
-    </div>
+      <div>
+        <h1>Books</h1><br />
+        <div className='put_correct'>
+          {books.map(b=> <Books title={b.title} year={b.year} img={b.img} strony={b.strony} />)}
+        </div>
+      </div>
     </div>
     
   );
