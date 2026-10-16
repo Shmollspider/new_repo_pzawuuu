@@ -95,7 +95,7 @@ function App(){
     {
       title: "Moby Dick",
       year: 1851,
-      img: "./public/zik.jpg",
+      img: "./public/bd.jpg",
       strony: 450
     }
   ]
