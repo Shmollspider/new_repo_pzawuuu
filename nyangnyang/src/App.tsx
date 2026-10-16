@@ -9,6 +9,7 @@ interface props{
   img?:string;
   m_link?:string;
   strony?:number;
+  rating?: number;
 }
 // function Welcome({time = "12", person = "no one"}:props){
 //   let tmp_time =  Number(time);
@@ -25,12 +26,13 @@ interface props{
   
 // }
 //this is to check
-function Movie({title, year, img}:props){
+function Movie({title, year, img, rating}:props){
     return(
       <div>
         <img src={img} className='img'></img>
         <p>{title}</p>
         <p>{year}</p>
+        <p>Rating: {rating}</p>
       </div>
     );
 }
@@ -60,17 +62,20 @@ function App(){
     {
       title: "Stray Kids: The dominATE Experience",
       year: 2026,
-      img: "./public/skz.jpg"
+      img: "./public/skz.jpg",
+      rating: 7
     },
     {
       title: "Project Hail Mary",
       year: 2026,
-      img: "./public/hail_mary.jpg"
+      img: "./public/hail_mary.jpg",
+      rating: 9
     },
     {
       title: "Frieren",
       year: 2020,
-      img: "./public/frieren.jpg"
+      img: "./public/frieren.jpg",
+      rating: 9
     }
   ]
   const books = [
@@ -90,13 +95,13 @@ function App(){
       title: "Smocza Straż",
       year: 2020,
       img: "./public/ss.jpg",
-      strony: 450
+      strony: 400
     },
     {
       title: "Moby Dick",
       year: 1851,
       img: "./public/bd.jpg",
-      strony: 450
+      strony: 190
     }
   ]
   const albums = [
@@ -130,7 +135,7 @@ function App(){
       <div>
       <h1>MOVIES AND SERIALS</h1><br />
         <div className='put_correct'>
-        {Movies.map(m=> <Movie title={m.title} year={m.year} img={m.img} />)}
+        {Movies.map(m=> <Movie title={m.title} year={m.year} img={m.img} rating={m.rating}/>)}
         </div>
       </div>
       <div>
