@@ -1,15 +1,22 @@
 import './App.css'
+import { useState } from "react";
+interface Movie{
+  title?:string;
+  year?:number;
+  img?:string;
+  rating: number;
+}
 interface props{
   // /** Imie osoby do greetings, auto = no one*/
   // person?: string;
   // /** Opcjonalny czas! auto =12*/
   // time?: string;
   title?:string;
-  year?:number;
+  year:number;
   img?:string;
   m_link?:string;
   strony?:number;
-  rating?: number;
+  tracks?: string[];
 }
 // function Welcome({time = "12", person = "no one"}:props){
 //   let tmp_time =  Number(time);
@@ -26,27 +33,40 @@ interface props{
   
 // }
 //this is to check
-function Movie({title, year, img, rating}:props){
+function Movie({title, year, img, rating}:Movie){
+  
+  let polecenie = 0;
+  if (rating >= 8) {
+    polecenie = 1;
+  }
     return(
       <div>
         <img src={img} className='img'></img>
         <p>{title}</p>
         <p>{year}</p>
         <p>Rating: {rating}</p>
+        {polecenie == 1 && <p>Polecany!</p>}
       </div>
     );
+    
 }
 function Books({title, year, img, strony}:props){
+  let klasyka = 0;
+  if (year <= 2000) {
+    klasyka = 1;
+  }
     return(
       <div>
         <img src={img} className='img'></img>
         <p>{title}</p>
         <p>{year}</p>
         <p>{strony}</p>
+        {klasyka == 1 && <p>Klasyka</p>}
       </div>
     );
 }
-function Music({title, year, img, m_link}:props){
+function Albums({title, year, img, m_link}:props){
+
     return(
       <div>
         <img src={img} className='img'></img>
@@ -63,7 +83,7 @@ function App(){
       title: "Stray Kids: The dominATE Experience",
       year: 2026,
       img: "./public/skz.jpg",
-      rating: 7
+      rating: 7,
     },
     {
       title: "Project Hail Mary",
@@ -76,6 +96,12 @@ function App(){
       year: 2020,
       img: "./public/frieren.jpg",
       rating: 9
+    },
+    {
+      title: "WALL-E ",
+      year: 2008,
+      img: "./public/Wall-E.jpg",
+      rating: 10
     }
   ]
   const books = [
@@ -109,7 +135,8 @@ function App(){
       title: "Zoltraak",
       year: 2023,
       img: "./public/frieren.jpg",
-      mlink: "https://www.youtube.com/watch?v=M7gm_r8hXoU"
+      mlink: "https://www.youtube.com/watch?v=M7gm_r8hXoU",
+      tracks: ["Track 1", "Track 2", "Track 3"]
     },
     {
       title: "Wodymidaj",
@@ -130,6 +157,11 @@ function App(){
       mlink: "https://www.youtube.com/watch?v=92E0X59wzeg"
     }
   ]
+  Movies.sort((a, b) => (a.title).localeCompare(b.title));
+  albums.sort((a, b) => (a.title).localeCompare(b.title));
+  books.sort((a, b) => (a.title).localeCompare(b.title));
+  const movies_after2010 = Movies.filter(movie => movie.year > 2010);
+  const books_new = [...books].sort((a, b) => (b.year - a.year));
   return(
     <div>
       <div>
@@ -141,13 +173,25 @@ function App(){
       <div>
         <h1>Music/Albums</h1><br />
         <div className='put_correct'>
-          {albums.map(mm=> <Music title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} />)}
+          {albums.map(mm=> <Albums title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} />)}
         </div>
       </div>
       <div>
         <h1>Books</h1><br />
         <div className='put_correct'>
           {books.map(b=> <Books title={b.title} year={b.year} img={b.img} strony={b.strony} />)}
+        </div>
+      </div>
+      <div>
+      <h1>MOVIES AFTER 2010</h1><br />
+        <div className='put_correct'>
+        {movies_after2010.map(m=> <Movie title={m.title} year={m.year} img={m.img} rating={m.rating}/>)}
+        </div>
+      </div>
+      <div>
+      <h1>NEWEST BOOKS</h1><br />
+        <div className='put_correct'>
+        {books_new.map(b=> <Books title={b.title} year={b.year} img={b.img} strony={b.strony} />)}
         </div>
       </div>
     </div>
