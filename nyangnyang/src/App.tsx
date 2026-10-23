@@ -272,7 +272,7 @@ function App(){
       {render_books(books_new,"NEWEST BOOKS")}
       {render_albums(longestAlbum,"LONGEST")}
     </div>
-    
+    // hehe session (Dania reference) :3c [THIS IS BARTOSZ KIEWSZYNS COMMENT I AM KEEPING IT IN SPITE OF HIM]
   );
 }
 export default App
