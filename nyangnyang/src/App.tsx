@@ -111,7 +111,7 @@ function render_movie(Movies : any[],title : string){
   }
   return(
     <div>
-      <h1>{title}</h1> <button onClick={list_sthsth} >{isOpen ? "⏷" : "⏵"}</button> <br /> 
+      <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br /> 
         <div className='put_correct'>
         {isOpen && Movies.map(m=> <Movie title={m.title} year={m.year} img={m.img} rating={m.rating}/>)}
         </div>
@@ -125,7 +125,7 @@ function render_books(Bookies : any[], title : string){
   }
   return(
     <div>
-        <h1>{title}</h1> <button onClick={list_sthsth} >{isOpen ? "⏷" : "⏵"}</button> <br />
+        <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br />
         <div className='put_correct'>
           {isOpen && Bookies.map(b=> <Books title={b.title} year={b.year} img={b.img} strony={b.strony} />)}
         </div>
@@ -139,7 +139,7 @@ function render_albums(albums : any[], title : string){
   }
   return(
     <div>
-        <h1>{title}</h1><button onClick={list_sthsth} >{isOpen ? "⏷" : "⏵"}</button><br />
+        <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br />
         <div className='put_correct'>
           {isOpen && albums.map(mm=> <Albums title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} tracks={mm.tracks}/>)}
           
