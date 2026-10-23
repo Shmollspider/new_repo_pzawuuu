@@ -1,4 +1,5 @@
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from "react"
 interface Movie{
   title?:string;
@@ -47,12 +48,16 @@ function Movie({title, year, img, rating}:Movie){
     polecenie = 1;
   }
     return(
-      <div>
-        <img src={img} className='img'></img>
-        <p>{title}</p>
-        <p>{year}</p>
-        <p>Rating: {rating}</p>
-        {polecenie == 1 && <p>Polecany!</p>}
+      <div className="container">
+        <div className="card">
+          <img src={img} className="card-img-top"></img>
+          <div className="card-body">
+            <p className="card-title">{title}</p>
+            <p className="card-text">{year}</p>
+            <p className="card-text">Rating: {rating}</p>
+            {polecenie == 1 && <p className="card-text">Polecany!</p>}
+          </div>
+        </div>
       </div>
     );
     
@@ -63,25 +68,27 @@ function Books({title, year, img, strony}:bookies){
     klasyka = 1;
   }
     return(
-      <div>
-        <img src={img} className='img'></img>
-        <p>{title}</p>
-        <p>{year}</p>
-        <p>{strony}</p>
-        {klasyka == 1 && <p>Klasyka</p>}
-        {klasyka ==2 && <p>Gowno</p>}
+      <div className="card">
+        <img src={img} className="card-img-top"></img>
+        <div className="card-body">
+          <p className="card-title">{title}</p>
+          <p className="card-text">{year}</p>
+          <p className="card-text">{strony}</p>
+          {klasyka == 1 && <p className="card-text">Klasyka</p>}
+        </div>
       </div>
     );
 }
 function Albums(props:albums){
 
     return(
-      <div>
-        <img src={props.img} className='img'></img>
-        <br />
-        <a href={props.m_link}>{props.title}</a>
-        <p>{props.year}</p>
-        <table>
+      <div className="card">
+        <img src={props.img} className="card-img-top"></img>
+        <div className="card-body">
+          <a href={props.m_link} className="card-link">{props.title}</a>
+          <p className="card-text">{props.year}</p>
+        </div>
+        <table className="container text-center">
            <tbody>
               {props.tracks.length > 0 ? (props.tracks.map(track => 
               <Trackies nummy={track.nummy} t_title={track.t_title} SONG_length={track.SONG_length} />
@@ -97,10 +104,10 @@ function Albums(props:albums){
 }
 function Trackies(props: tracks) {
   return (
-    <tr>
-      <td>{props.nummy}</td>
-      <td>{props.t_title}</td>
-      <td>{props.SONG_length}</td>
+    <tr className="row">
+      <td className="col">{props.nummy}</td>
+      <td className="col">{props.t_title}</td>
+      <td className="col">{props.SONG_length}</td>
     </tr>
   );
 }
@@ -141,7 +148,7 @@ function render_albums(albums : any[], title : string){
     <div>
         <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br />
         <div className='put_correct'>
-          const cards = {isOpen && albums.map(mm=> <Albums title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} tracks={mm.tracks}/>)}
+          {isOpen && albums.map(mm=> <Albums title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} tracks={mm.tracks}/>)}
           
         </div>
       </div>
@@ -262,7 +269,7 @@ function App(){
   const books_new = [...books].sort((a, b) => (b.year - a.year));
   const longestAlbum = highest(albums);
   return(
-    <div>
+    <div className="container">
       {/* :3 */}
       {/* meow meow BURGOIR */}
       {render_movie(Movies, "MOVIES AND SERIALS")}
