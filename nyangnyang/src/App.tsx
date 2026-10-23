@@ -141,7 +141,7 @@ function render_albums(albums : any[], title : string){
     <div>
         <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br />
         <div className='put_correct'>
-          {isOpen && albums.map(mm=> <Albums title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} tracks={mm.tracks}/>)}
+          const cards = {isOpen && albums.map(mm=> <Albums title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} tracks={mm.tracks}/>)}
           
         </div>
       </div>
@@ -270,7 +270,7 @@ function App(){
       {render_albums(albums,"ALBUMS")}
       {render_movie(movies_after2010, "MOVIES AFTER 2010")}
       {render_books(books_new,"NEWEST BOOKS")}
-      {render_albums(longestAlbum,"LONGEST")}
+      {render_albums(longestAlbum,"LONGEST ALBUM")}
     </div>
     // hehe session (Dania reference) :3c [THIS IS BARTOSZ KIEWSZYNS COMMENT I AM KEEPING IT IN SPITE OF HIM]
   );
