@@ -1,13 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from "react"
 interface Movie{
-  title?:string;
+  title:string;
   year?:number;
   img?:string;
   rating: number;
 }
 interface albums{
-  title?:string;
+  title:string;
   year:number;
   img?:string;
   m_link?:string;
@@ -17,6 +17,7 @@ interface tracks {
   nummy: number;
   t_title: string;
   SONG_length: string;
+  onClick: () => void;
 }
 
 interface bookies{
@@ -40,6 +41,18 @@ interface bookies{
   
 // }
 //this is to check
+function title_case(title: string, tekst?: string){
+  if (tekst != undefined) {
+    console.log(tekst, title);
+  }
+  else{
+    console.log("Tytuł Filmu:", title);
+  }
+}
+function handleSongClick(title: string, albumTitle: string) {
+  console.log("Kliknięto utwór ",title," z albumu ",albumTitle)
+}
+
 function Movie({title, year, img, rating}:Movie){
   
   let polecenie = 0;
@@ -51,8 +64,11 @@ function Movie({title, year, img, rating}:Movie){
             <div className="card">
               <img src={img} className="card-img-top"></img>
               <div className="card-body">
-                <p className="card-title">{title}</p>
+                <p className="card-title" onClick={() => title_case(title)}>
+                  {title}
+                </p>
                 <p className="card-text">{year}</p>
+                <button className="btn btn-info" onClick={() => title_case(title, "Przycisk Kliknięty: Szczegóły filmu:")}>Pokaż Szczegóły</button>
                 <p className="card-text">Rating: {rating}</p>
                 {polecenie == 1 && <p className="card-text">Polecany!</p>}
               </div>
@@ -87,23 +103,25 @@ function Albums(props:albums){
           <a href={props.m_link} className="card-link">{props.title}</a>
           <p className="card-text">{props.year}</p>
         </div>
-        <table className="table table-striped table-hover"> 
-           <tbody>
-              {props.tracks.length > 0 ? (props.tracks.map(track => 
-              <Trackies nummy={track.nummy} t_title={track.t_title} SONG_length={track.SONG_length} />
-          )) : (
-            <tr>
-              <td colSpan={3}>Brak utworów</td>
-            </tr>
-          )}
-        </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table table-striped table-hover "> 
+            <tbody>
+                {props.tracks.length > 0 ? (props.tracks.map(track => 
+                <Trackies nummy={track.nummy} t_title={track.t_title} SONG_length={track.SONG_length} onClick={() => handleSongClick(track.t_title, props.title)} />
+            )) : (
+              <tr>
+                <td colSpan={3}>Brak utworów</td>
+              </tr>
+            )}
+          </tbody>
+          </table>
+        </div>
       </div>
     );
 }
 function Trackies(props: tracks) {
   return (
-    <tr className="row">
+    <tr className="row" onClick={props.onClick}>
       <td className="col">{props.nummy}</td>
       <td className="col">{props.t_title}</td>
       <td className="col">{props.SONG_length}</td>
