@@ -87,7 +87,7 @@ function Albums(props:albums){
           <a href={props.m_link} className="card-link">{props.title}</a>
           <p className="card-text">{props.year}</p>
         </div>
-        <table className="container text-center">
+        <table className="table table-striped table-hover"> 
            <tbody>
               {props.tracks.length > 0 ? (props.tracks.map(track => 
               <Trackies nummy={track.nummy} t_title={track.t_title} SONG_length={track.SONG_length} />
