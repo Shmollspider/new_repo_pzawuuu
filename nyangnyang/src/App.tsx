@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useState } from "react"
+import React, { useState } from "react"
 interface Movie{
   title:string;
   year?:number;
@@ -49,8 +49,13 @@ function title_case(title: string, tekst?: string){
     console.log("Tytuł Filmu:", title);
   }
 }
+
 function handleSongClick(title: string, albumTitle: string) {
   console.log("Kliknięto utwór ",title," z albumu ",albumTitle)
+}
+
+function wypis(event : React.ChangeEvent<HTMLInputElement>){ //ZAPAMIETAJ ALEX, YOU EXTRA DUMB, REVISE
+  console.log(event.currentTarget.value);
 }
 
 function Movie({title, year, img, rating}:Movie){
@@ -110,7 +115,7 @@ function Albums(props:albums){
                 <Trackies nummy={track.nummy} t_title={track.t_title} SONG_length={track.SONG_length} onClick={() => handleSongClick(track.t_title, props.title)} />
             )) : (
               <tr>
-                <td colSpan={3}>Brak utworów</td>
+                <td className="alert alert-primary" role="alert">Brak utworów</td>
               </tr>
             )}
           </tbody>
@@ -133,12 +138,23 @@ function render_movie(Movies : any[],title : string){
   function list_sthsth(){
     changieee(!isOpen);
   }
+  const[tekies, use_for_tekst] = useState("");
+    function helper(event:React.ChangeEvent<HTMLInputElement>){
+    let txt = event.currentTarget.value;
+    txt = txt.charAt(0).toUpperCase() + txt.slice(1);
+    use_for_tekst(txt);
+    console.log(txt);
+  }
+  const filtered_movie = Movies.filter(mo=> mo.title.includes(tekies));
+
   return(
     <div>
-    <input id="movie-search" type="text" className="form-control" placeholder="Wpisz tytuł"/>
+    <input id="album-search" type="text" className="form-control" placeholder="Wpisz tytuł" onChange={(event) => helper(event)}/>
+    <p>{tekies}</p>
       <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br /> 
+      {filtered_movie.length == 0 && <p>Nie znaleziono filmów</p>}
         <div className="row row-cols-1 row-cols-md-2 g-2 ">
-          {isOpen && Movies.map(m=> <Movie title={m.title} year={m.year} img={m.img} rating={m.rating}/>)}
+          {isOpen && filtered_movie.map(m=> <Movie title={m.title} year={m.year} img={m.img} rating={m.rating}/>)}
         </div>
       </div>
   );
@@ -148,9 +164,16 @@ function render_books(Bookies : any[], title : string){
   function list_sthsth(){
     changieee(!isOpen);
   }
+  const[tekies, use_for_tekst] = useState("Tu jest paragraf");
+    function helper(event:React.ChangeEvent<HTMLInputElement>){
+    let txt = event.currentTarget.value;
+    use_for_tekst(txt);
+    console.log(txt);
+  }
   return(
     <div>
-      <input id="book-search" type="text" className="form-control" placeholder="Wpisz tytuł"/>
+      <input id="album-search" type="text" className="form-control" placeholder="Wpisz tytuł" onChange={(event) => helper(event)}/>
+      <p>{tekies}</p>
         <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br />
           <div className="row row-cols-1 row-cols-md-2 g-2 ">
             {isOpen && Bookies.map(b=> <Books title={b.title} year={b.year} img={b.img} strony={b.strony} />)}
@@ -163,9 +186,18 @@ function render_albums(albums : any[], title : string){
   function list_sthsth(){
     changieee(!isOpen);
   }
+
+  function helper(event:React.ChangeEvent<HTMLInputElement>){
+    let txt = event.currentTarget.value;
+    use_for_tekst(txt);
+    console.log(txt);
+  }
+
+  const[tekies, use_for_tekst] = useState("Tu jest paragraf");
   return(
     <div>
-      <input id="album-search" type="text" className="form-control" placeholder="Wpisz tytuł"/>
+      <input id="album-search" type="text" className="form-control" placeholder="Wpisz tytuł" onChange={(event) => helper(event)}/>
+      <p>{tekies}</p>
         <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br />
           <div className="row row-cols-1 row-cols-md-2 g-2 justify-content-center">
             {isOpen && albums.map(mm=> <Albums title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} tracks={mm.tracks}/>)}
