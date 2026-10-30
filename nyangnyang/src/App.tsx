@@ -54,9 +54,9 @@ function handleSongClick(title: string, albumTitle: string) {
   console.log("Kliknięto utwór ",title," z albumu ",albumTitle)
 }
 
-function wypis(event : React.ChangeEvent<HTMLInputElement>){ //ZAPAMIETAJ ALEX, YOU EXTRA DUMB, REVISE
-  console.log(event.currentTarget.value);
-}
+// function wypis(event : React.ChangeEvent<HTMLInputElement>){ //ZAPAMIETAJ ALEX, YOU EXTRA DUMB, REVISE
+//   console.log(event.currentTarget.value);
+// }
 
 function Movie({title, year, img, rating}:Movie){
   
