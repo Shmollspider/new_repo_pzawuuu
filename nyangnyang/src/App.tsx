@@ -135,6 +135,7 @@ function render_movie(Movies : any[],title : string){
   }
   return(
     <div>
+    <input id="movie-search" type="text" className="form-control" placeholder="Wpisz tytuł"/>
       <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br /> 
         <div className="row row-cols-1 row-cols-md-2 g-2 ">
           {isOpen && Movies.map(m=> <Movie title={m.title} year={m.year} img={m.img} rating={m.rating}/>)}
@@ -149,6 +150,7 @@ function render_books(Bookies : any[], title : string){
   }
   return(
     <div>
+      <input id="book-search" type="text" className="form-control" placeholder="Wpisz tytuł"/>
         <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br />
           <div className="row row-cols-1 row-cols-md-2 g-2 ">
             {isOpen && Bookies.map(b=> <Books title={b.title} year={b.year} img={b.img} strony={b.strony} />)}
@@ -163,6 +165,7 @@ function render_albums(albums : any[], title : string){
   }
   return(
     <div>
+      <input id="album-search" type="text" className="form-control" placeholder="Wpisz tytuł"/>
         <h1 onClick={list_sthsth}>{title}{isOpen ? "⏷" : "⏵"}</h1> <br />
           <div className="row row-cols-1 row-cols-md-2 g-2 justify-content-center">
             {isOpen && albums.map(mm=> <Albums title={mm.title} year={mm.year} img={mm.img} m_link={mm.mlink} tracks={mm.tracks}/>)}
