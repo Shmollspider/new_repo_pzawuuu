@@ -75,4 +75,4 @@ function App() {
 
 export default App
 
-//Psze Pana, my mamy w większości poniżej 18 lat, braku doświadczenia z tymi rzeczami I POWOLNE TEMPO PRACY. dodatkowo posiadam problemy ze stresem wiec sie poryczałam w między czasie 3 razy. Prosiłabym o przemyslenie tego typu zadań
+//Psze Pana, my mamy w większości poniżej 18 lat, braku doświadczenia z tymi rzeczami I POWOLNE TEMPO PRACY. dodatkowo osobiscie posiadam problemy ze stresem wiec sie poryczałam w między czasie 3 razy. Prosiłabym o przemyslenie tego typu zadań
